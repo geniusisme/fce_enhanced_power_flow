@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ArrayOfCraftData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<CraftData>
+		<Key>solar2</Key>
+		<IsOverride>true</IsOverride>
+		<CraftedKey>GeniusIsme.SolarMk2Placement</CraftedKey>
+	</CraftData>
+
+	<CraftData>
+		<Key>solar2organic</Key>
+		<IsOverride>true</IsOverride>
+		<CraftedKey>GeniusIsme.OrganicSolarMk2Placement</CraftedKey>
+	</CraftData>
+
+	<CraftData>
+		<Key>PSB</Key>
+		<IsOverride>true</IsOverride>
+		<CraftedKey>GeniusIsme.PowerStorageMK1</CraftedKey>
+	</CraftData>
+
+	<CraftData>
+		<Key>PSB mk2</Key>
+		<IsOverride>true</IsOverride>
+		<CraftedKey>GeniusIsme.PowerStorageMK2</CraftedKey>
+		<Costs>
+			<CraftCost>
+				<Key>PowerStorageMK1</Key>
+				<Delete>true</Delete>
+			</CraftCost>
+			<CraftCost>
+				<Key>GeniusIsme.PowerStorageMK1</Key>
+				<Amount>4</Amount>
+			</CraftCost>
+		</Costs>
+	</CraftData>
+
+	<CraftData>
+		<Key>PSB_mk3_Alt</Key>
+		<IsOverride>true</IsOverride>
+		<CraftedKey>GeniusIsme.PowerStorageMK3</CraftedKey>
+	</CraftData>
+
+	<CraftData>
+		<Key>PSBMk3_Upcraft</Key>
+		<IsOverride>true</IsOverride>
+		<CraftedKey>GeniusIsme.PowerStorageMK3</CraftedKey>
+		<Costs>
+			<CraftCost>
+				<Name>Power Storage MK2</Name>
+				<Delete>true</Delete>
+			</CraftCost>
+			<CraftCost>
+				<Key>GeniusIsme.PowerStorageMK2</Key>
+				<Amount>8</Amount>
+			</CraftCost>
+		</Costs>
+	</CraftData>
+
+	<CraftData>
+		<Key>PSB organic</Key>
+		<IsOverride>true</IsOverride>
+		<CraftedKey>GeniusIsme.OrganicPowerStorage</CraftedKey>
+	</CraftData>
+
+	<CraftData>
+		<Key>PSB mk4</Key>
+		<IsOverride>true</IsOverride>
+		<CraftedKey>GeniusIsme.BatteryMK4Placement</CraftedKey>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.PowerStorageMK3</Key>
+				<Amount>9</Amount>
+			</CraftCost>
+			<CraftCost>
+				<Key>PowerStorageMK3</Key>
+				<Delete>true</Delete>
+			</CraftCost>
+		</Costs>
+	</CraftData>
+
+	<CraftData>
+		<Key>PSB mk5</Key>
+		<IsOverride>true</IsOverride>
+		<CraftedKey>GeniusIsme.BatteryMK5Placement</CraftedKey>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.BatteryMK4Placement</Key>
+				<Amount>27</Amount>
+			</CraftCost>
+			<CraftCost>
+				<Key>BatteryMK4Placement</Key>
+				<Delete>true</Delete>
+			</CraftCost>
+		</Costs>
+	</CraftData>
+
+	<CraftData>
+		<Key>T4_Conduit</Key>
+		<IsOverride>true</IsOverride>
+		<CraftedKey>GeniusIsme.ConduitPlacement</CraftedKey>
+		<Description>Fires upto 18,000 PPS, equalising power between batteries. Do not look directly into beam.</Description>
+	</CraftData>
+
+	<CraftData>
+		<Key>InductionCharger</Key>
+		<IsOverride>true</IsOverride>
+		<CraftedKey>GeniusIsme.InductionChargerPlacement</CraftedKey>
+		<Costs>
+			<CraftCost>
+				<Key>PowerBoosterMK2</Key>
+				<Amount>5</Amount>
+			</CraftCost>
+			<CraftCost>
+				<Key>GeniusIsme.PowerStorageMK2</Key>
+				<Amount>5</Amount>
+			</CraftCost>
+		</Costs>
+	</CraftData>
+
+</ArrayOfCraftData>

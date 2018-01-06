@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeniusIsme.EnhancedPowerFlow", "GeniusIsme.EnhancedPowerFlow.csproj", "{9DE0BC2B-E5A8-4DE1-A850-28EA700196EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerFlowTest", "..\PowerFlowTest\PowerFlowTest.csproj", "{882815BA-A9B2-4F94-98DC-D22CE4A8F2CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9DE0BC2B-E5A8-4DE1-A850-28EA700196EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DE0BC2B-E5A8-4DE1-A850-28EA700196EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DE0BC2B-E5A8-4DE1-A850-28EA700196EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DE0BC2B-E5A8-4DE1-A850-28EA700196EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{882815BA-A9B2-4F94-98DC-D22CE4A8F2CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{882815BA-A9B2-4F94-98DC-D22CE4A8F2CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{882815BA-A9B2-4F94-98DC-D22CE4A8F2CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{882815BA-A9B2-4F94-98DC-D22CE4A8F2CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
