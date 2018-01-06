@@ -59,13 +59,15 @@
   </Choose>
   <ItemGroup>
     <Compile Include="PowerStorageTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EnhancedPowerFlow\GeniusIsme.EnhancedPowerFlow.csproj">
       <Project>{9de0bc2b-e5a8-4de1-a850-28ea700196ec}</Project>
       <Name>GeniusIsme.EnhancedPowerFlow</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
