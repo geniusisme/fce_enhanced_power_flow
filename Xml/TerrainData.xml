@@ -8,7 +8,7 @@
 			<ValueEntry>
 				<Key>GeniusIsme.ConduitPlacement</Key>
 				<Name>Conduit Placement</Name>
-				<IconName>Conduit</IconName>
+				<IconName>PowerConduitT4</IconName>
 				<Description>Connect T4 batteries at a distance of up to 128 metres at over 18,000 PPS. Build in a 3x3x1 configuration, attached to a T4 PSB.</Description>
 			</ValueEntry>
 
@@ -69,7 +69,7 @@
 		<Hidden>true</Hidden>
 		<isSolid>true</isSolid>
 		<isTransparent>true</isTransparent>
-		<isHollow>false</isHollow>
+		<isHollow>true</isHollow>
 		<isGlass>false</isGlass>
 		<isPassable>false</isPassable>
 		<hasObject>true</hasObject>
@@ -103,7 +103,7 @@
 		<Hidden>true</Hidden>
 		<isSolid>true</isSolid>
 		<isTransparent>true</isTransparent>
-		<isHollow>false</isHollow>
+		<isHollow>true</isHollow>
 		<isGlass>false</isGlass>
 		<isPassable>false</isPassable>
 		<hasObject>true</hasObject>
@@ -137,7 +137,7 @@
 		<Hidden>true</Hidden>
 		<isSolid>true</isSolid>
 		<isTransparent>true</isTransparent>
-		<isHollow>false</isHollow>
+		<isHollow>true</isHollow>
 		<isGlass>false</isGlass>
 		<isPassable>false</isPassable>
 		<hasObject>true</hasObject>
@@ -170,7 +170,7 @@
 		<Hidden>true</Hidden>
 		<isSolid>true</isSolid>
 		<isTransparent>true</isTransparent>
-		<isHollow>false</isHollow>
+		<isHollow>true</isHollow>
 		<isGlass>false</isGlass>
 		<isPassable>false</isPassable>
 		<hasObject>true</hasObject>
@@ -203,7 +203,7 @@
 		<Hidden>true</Hidden>
 		<isSolid>true</isSolid>
 		<isTransparent>true</isTransparent>
-		<isHollow>false</isHollow>
+		<isHollow>true</isHollow>
 		<isGlass>false</isGlass>
 		<isPassable>false</isPassable>
 		<hasObject>true</hasObject>
@@ -236,7 +236,7 @@
 		<Hidden>true</Hidden>
 		<isSolid>true</isSolid>
 		<isTransparent>true</isTransparent>
-		<isHollow>false</isHollow>
+		<isHollow>true</isHollow>
 		<isGlass>false</isGlass>
 		<isPassable>false</isPassable>
 		<hasObject>true</hasObject>
