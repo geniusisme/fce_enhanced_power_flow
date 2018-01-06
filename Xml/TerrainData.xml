@@ -67,7 +67,7 @@
 		<BottomTexture>192</BottomTexture>
 		<GUITexture>192</GUITexture>
 		<Hidden>true</Hidden>
-		<isSolid>false</isSolid>
+		<isSolid>true</isSolid>
 		<isTransparent>true</isTransparent>
 		<isHollow>false</isHollow>
 		<isGlass>false</isGlass>
@@ -101,7 +101,7 @@
 		<BottomTexture>192</BottomTexture>
 		<GUITexture>192</GUITexture>
 		<Hidden>true</Hidden>
-		<isSolid>false</isSolid>
+		<isSolid>true</isSolid>
 		<isTransparent>true</isTransparent>
 		<isHollow>false</isHollow>
 		<isGlass>false</isGlass>
@@ -135,7 +135,7 @@
 		<BottomTexture>192</BottomTexture>
 		<GUITexture>192</GUITexture>
 		<Hidden>true</Hidden>
-		<isSolid>false</isSolid>
+		<isSolid>true</isSolid>
 		<isTransparent>true</isTransparent>
 		<isHollow>false</isHollow>
 		<isGlass>false</isGlass>
@@ -168,7 +168,7 @@
 		<BottomTexture>192</BottomTexture>
 		<GUITexture>192</GUITexture>
 		<Hidden>true</Hidden>
-		<isSolid>false</isSolid>
+		<isSolid>true</isSolid>
 		<isTransparent>true</isTransparent>
 		<isHollow>false</isHollow>
 		<isGlass>false</isGlass>
@@ -201,7 +201,7 @@
 		<BottomTexture>192</BottomTexture>
 		<GUITexture>192</GUITexture>
 		<Hidden>true</Hidden>
-		<isSolid>false</isSolid>
+		<isSolid>true</isSolid>
 		<isTransparent>true</isTransparent>
 		<isHollow>false</isHollow>
 		<isGlass>false</isGlass>
@@ -234,7 +234,7 @@
 		<BottomTexture>192</BottomTexture>
 		<GUITexture>192</GUITexture>
 		<Hidden>true</Hidden>
-		<isSolid>false</isSolid>
+		<isSolid>true</isSolid>
 		<isTransparent>true</isTransparent>
 		<isHollow>false</isHollow>
 		<isGlass>false</isGlass>
@@ -288,7 +288,7 @@
 		<SideTexture>187</SideTexture>
 		<BottomTexture>187</BottomTexture>
 		<GUITexture>187</GUITexture>
-		<isSolid>false</isSolid>
+		<isSolid>true</isSolid>
 		<isTransparent>true</isTransparent>
 		<isHollow>false</isHollow>
 		<isGlass>false</isGlass>
