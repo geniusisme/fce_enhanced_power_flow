@@ -116,6 +116,75 @@
 				<Amount>5</Amount>
 			</CraftCost>
 		</Costs>
+		<RemoveScanRequirements>
+			<Scan>PowerStorageMK2</Scan>
+		</RemoveScanRequirements>
+		<ScanRequirements>
+			<Scan>GeniusIsme.PowerStorageMK2</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+	<!-- other recipes requiring power stuff as ingridients -->
+
+	<CraftData>
+		<Key>ElectricLight</Key>
+		<IsOverride>true</IsOverride>
+		<CraftedAmount>1</CraftedAmount>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.PowerStorageMK1</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+			<CraftCost>
+				<Key>PowerStorageMK1</Key>
+				<Delete>true</Delete>
+			</CraftCost>
+		</Costs>
+	</CraftData>
+
+	<CraftData>
+		<Key>arther charter</Key>
+		<IsOverride>true</IsOverride>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.PowerStorageMK1</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+			<CraftCost>
+				<Key>PowerStorageMK1</Key>
+				<Delete>true</Delete>
+			</CraftCost>
+		</Costs>
+	</CraftData>
+
+	<CraftData>
+		<Key>MK1PowerBoosterCharger</Key>
+		<IsOverride>true</IsOverride>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.PowerStorageMK1</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+			<CraftCost>
+				<Key>PowerStorageMK1</Key>
+				<Delete>true</Delete>
+			</CraftCost>
+		</Costs>
+	</CraftData>
+
+	<CraftData>
+		<Key>SpiderBot Cannon</Key>
+		<IsOverride>true</IsOverride>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.PowerStorageMK3</Key>
+				<Amount>4</Amount>
+			</CraftCost>
+			<CraftCost>
+				<Key>PowerStorageMK3</Key>
+				<Delete>Delete</Delete>
+			</CraftCost>
+		</Costs>
 	</CraftData>
 
 </ArrayOfCraftData>

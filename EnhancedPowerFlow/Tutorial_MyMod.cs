@@ -22,7 +22,10 @@ public class EnhancedPowerFlow : FortressCraft.ModFoundation.Mod
 
     public override void RegisterEntities()
     {
-        this.RegisterBlock("GeniusIsme.EnhancedPowerStorageBlock", p => new PowerStorageBlock(p));
+        this.RegisterBlock("GeniusIsme.PowerStorageMK1", p => new PowerStorageBlock(p));
+        this.RegisterBlock("GeniusIsme.PowerStorageMK2", p => new PowerStorageBlock(p));
+        this.RegisterBlock("GeniusIsme.PowerStorageMK3", p => new PowerStorageBlock(p));
+        this.RegisterBlock("GeniusIsme.OrganicPowerStorage", p => new PowerStorageBlock(p));
         InductionCharger = this.RegisterBoxMultiblock(
             "GeniusIsme.InductionCharger",
             new Position(5, 1, 5),
