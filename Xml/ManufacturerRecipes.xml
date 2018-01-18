@@ -182,7 +182,7 @@
 			</CraftCost>
 			<CraftCost>
 				<Key>PowerStorageMK3</Key>
-				<Delete>Delete</Delete>
+				<Delete>true</Delete>
 			</CraftCost>
 		</Costs>
 	</CraftData>
