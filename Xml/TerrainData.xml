@@ -7,42 +7,42 @@
 		<Values>
 			<ValueEntry>
 				<Key>GeniusIsme.ConduitPlacement</Key>
-				<Name>Conduit Placement</Name>
-				<IconName>PowerConduitT4</IconName>
+				<Name>Flowy Conduit Placement</Name>
+				<IconName>Conduit</IconName>
 				<Description>Connect T4 batteries at a distance of up to 128 metres at over 18,000 PPS. Build in a 3x3x1 configuration, attached to a T4 PSB.</Description>
 			</ValueEntry>
 
 			<ValueEntry>
 				<Key>GeniusIsme.InductionChargerPlacement</Key>
-				<Name>Induction Charger Placement</Name>
+				<Name>Flowy Induction Charger Placement</Name>
 				<IconName>Induction Charger</IconName>
 				<Description>Provides power routing over a 5x5 area.</Description>
 			</ValueEntry>
 
 			<ValueEntry>
 				<Key>GeniusIsme.BatteryMK4Placement</Key>
-				<Name>MK4 Battery Component</Name>
+				<Name>Flowy MK4 Battery Component</Name>
 				<IconName>MK4 Battery Component</IconName>
 				<Description>Build in a 3x3x3 configuration for larger storage solutions.(Needs 27 in total)</Description>
 			</ValueEntry>
 
 			<ValueEntry>
 				<Key>GeniusIsme.BatteryMK5Placement</Key>
-				<Name>MK5 Battery Component</Name>
+				<Name>Flowy MK5 Battery Component</Name>
 				<IconName>MK5 Battery Component</IconName>
 				<Description>Build in a 5wx9hx5d configuration for the largest storage solutions.(Needs 225 in total)</Description>
 			</ValueEntry>
 
 			<ValueEntry>
 				<Key>GeniusIsme.SolarMk2Placement</Key>
-				<Name>MK2 Solar Panel Component</Name>
+				<Name>Flowy MK2 Solar Panel Component</Name>
 				<IconName>MK2 Solar Panel Component</IconName>
 				<Description>Create a 3wx1hx3d Solar Panel.</Description>
 			</ValueEntry>
 
 			<ValueEntry>
 				<Key>GeniusIsme.OrganicSolarMk2Placement</Key>
-				<Name>MK2 Organic Solar Component</Name>
+				<Name>Flowy MK2 Organic Solar Component</Name>
 				<IconName>MK2 Organic Solar Component</IconName>
 				<Description>Create a 3wx1hx3d Solar Panel. Collects a minimal amount at night.</Description>
 			</ValueEntry>
@@ -51,12 +51,15 @@
 
 	<TerrainDataEntry>
 		<Key>GeniusIsme.SolarMk2</Key>
+		<Name>Whatever</Name>
 		<Values>
 			<ValueEntry>
 				<Key>GeniusIsme.SolarMk2Control</Key>
+				<Name>Whatever</Name>
 			</ValueEntry>
 			<ValueEntry>
 				<Key>GeniusIsme.SolarMk2Filler</Key>
+				<Name>Whatever</Name>
 			</ValueEntry>
 		</Values>
 		<PickReplacement>GeniusIsme.SolarMk2Placement</PickReplacement>
@@ -85,12 +88,15 @@
 
 	<TerrainDataEntry>
 		<Key>GeniusIsme.OrganicSolarMk2</Key>
+		<Name>Whatever</Name>
 		<Values>
 			<ValueEntry>
 				<Key>GeniusIsme.OrganicSolarMk2Control</Key>
+				<Name>Whatever</Name>
 			</ValueEntry>
 			<ValueEntry>
 				<Key>GeniusIsme.OrganicSolarMk2Filler</Key>
+				<Name>Whatever</Name>
 			</ValueEntry>
 		</Values>
 		<PickReplacement>GeniusIsme.OrganicSolarMk2Placement</PickReplacement>
@@ -119,12 +125,15 @@
 
 	<TerrainDataEntry>
 		<Key>GeniusIsme.InductionCharger</Key>
+		<Name>Whatever</Name>
 		<Values>
 			<ValueEntry>
 				<Key>GeniusIsme.InductionChargerControl</Key>
+				<Name>Whatever</Name>
 			</ValueEntry>
 			<ValueEntry>
 				<Key>GeniusIsme.InductionChargerFiller</Key>
+				<Name>Whatever</Name>
 			</ValueEntry>
 		</Values>
 		<PickReplacement>GeniusIsme.InductionChargerPlacement</PickReplacement>
@@ -153,12 +162,15 @@
 
 	<TerrainDataEntry>
 		<Key>GeniusIsme.BatteryMK4</Key>
+		<Name>Whatever</Name>
 		<Values>
 			<ValueEntry>
 				<Key>GeniusIsme.BatteryMK4Control</Key>
+				<Name>Whatever</Name>
 			</ValueEntry>
 			<ValueEntry>
 				<Key>GeniusIsme.BatteryMK4Filler</Key>
+				<Name>Whatever</Name>
 			</ValueEntry>
 		</Values>
 		<PickReplacement>GeniusIsme.BatteryMK4Placement</PickReplacement>
@@ -186,12 +198,16 @@
 
 	<TerrainDataEntry>
 		<Key>GeniusIsme.BatteryMK5</Key>
+		<Name>Whatever</Name>
+		<Name>Whatever</Name>
 		<Values>
 			<ValueEntry>
 				<Key>GeniusIsme.BatteryMK5Control</Key>
+				<Name>Whatever</Name>
 			</ValueEntry>
 			<ValueEntry>
 				<Key>GeniusIsme.BatteryMK5Filler</Key>
+				<Name>Whatever</Name>
 			</ValueEntry>
 		</Values>
 		<PickReplacement>GeniusIsme.BatteryMK5Placement</PickReplacement>
@@ -219,12 +235,15 @@
 
 	<TerrainDataEntry>
 		<Key>GeniusIsme.Conduit</Key>
+		<Name>Whatever</Name>
 		<Values>
 			<ValueEntry>
 				<Key>GeniusIsme.ConduitControl</Key>
+				<Name>Whatever</Name>
 			</ValueEntry>
 			<ValueEntry>
 				<Key>GeniusIsme.ConduitFiller</Key>
+				<Name>Whatever</Name>
 			</ValueEntry>
 		</Values>
 		<PickReplacement>GeniusIsme.BatteryMK5Placement</PickReplacement>
@@ -257,28 +276,28 @@
 			<ValueEntry>
 				<Value>0</Value>
 				<Key>GeniusIsme.PowerStorageMK1</Key>
-				<Name>Power Storage Block</Name>
+				<Name>Flowy Power Storage Block</Name>
 				<IconName>PowerStorageBlock</IconName>
 				<Description>Stores a little energy.\nReceives energy from other sources.\nTransfers energy to other machines.</Description>
 			</ValueEntry>
 			<ValueEntry>
 				<Value>1</Value>
 				<Key>GeniusIsme.PowerStorageMK2</Key>
-				<Name>Power Storage MK2</Name>
+				<Name>Flowy Power Storage MK2</Name>
 				<IconName>PowerStorageBlockT2</IconName>
 				<Description>Stores more energy.\nReceives energy from other sources.\nTransfers energy to other machines.</Description>
 			</ValueEntry>
 			<ValueEntry>
 				<Value>2</Value>
 				<Key>GeniusIsme.PowerStorageMK3</Key>
-				<Name>Power Storage MK3</Name>
+				<Name>Flowy Power Storage MK3</Name>
 				<IconName>PowerStorageBlockT3</IconName>
 				<Description>Stores more energy.\nReceives energy from other sources.\nTransfers energy to other machines.</Description>
 			</ValueEntry>
 			<ValueEntry>
 				<Value>3</Value>
 				<Key>GeniusIsme.OrganicPowerStorage</Key>
-				<Name>Organic Power Storage</Name>
+				<Name>Flowy Organic Power Storage</Name>
 				<IconName>Organic Power Storage</IconName>
 				<Description>Can only transfer energy slowly.</Description>
 			</ValueEntry>

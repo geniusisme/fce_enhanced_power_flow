@@ -94,6 +94,10 @@ public class PowerStorage : PowerConsumerInterface
 
     public bool DeliverPower(float amount)
     {
+        if (amount > this.GetRemainingPowerCapacity())
+        {
+            return false;
+        }
         this.Power += amount;
         this.Recieved += amount;
         return true;

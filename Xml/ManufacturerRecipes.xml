@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ArrayOfCraftData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
+<!-- Solar panel MK2 -->
 	<CraftData>
 		<Key>solar2</Key>
 		<IsOverride>true</IsOverride>
@@ -8,17 +9,126 @@
 	</CraftData>
 
 	<CraftData>
+		<Key>GeniusIsme.SolarMk2Up</Key>
+		<Category>powergeneration</Category>
+		<Tier>5</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.SolarMk2Placement</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>SolarPanelMK2Placement</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.SolarMk2Placement</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+	<CraftData>
+		<Key>GeniusIsme.SolarMk2Down</Key>
+		<Category>powergeneration</Category>
+		<Tier>5</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>SolarPanelMK2Placement</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>GeniusIsme.SolarMk2Placement</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.SolarMk2Placement</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+<!-- Solar panel MK2 Organic -->
+	<CraftData>
 		<Key>solar2organic</Key>
 		<IsOverride>true</IsOverride>
 		<CraftedKey>GeniusIsme.OrganicSolarMk2Placement</CraftedKey>
+		<Costs>
+			<CraftCost>
+				<Key>SolarPanelMK2Placement</Key>
+				<Delete>true</Delete>
+			</CraftCost>
+			<CraftCost>
+				<Key>GeniusIsme.SolarMk2Placement</Key>
+				<Amount>3</Amount>
+			</CraftCost>
+		</Costs>
 	</CraftData>
 
+	<CraftData>
+		<Key>GeniusIsme.OrganicSolarMk2Up</Key>
+		<Category>powergeneration</Category>
+		<Tier>5</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.OrganicSolarMk2Placement</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>OrganicSolarPanelMK2Placement</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.OrganicSolarMk2Placement</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+	<CraftData>
+		<Key>GeniusIsme.OrganicSolarMk2Down</Key>
+		<Category>powergeneration</Category>
+		<Tier>5</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>OrganicSolarPanelMK2Placement</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>GeniusIsme.OrganicSolarMk2Placement</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.OrganicSolarMk2Placement</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+<!-- PSB MK1 -->
 	<CraftData>
 		<Key>PSB</Key>
 		<IsOverride>true</IsOverride>
 		<CraftedKey>GeniusIsme.PowerStorageMK1</CraftedKey>
 	</CraftData>
 
+	<CraftData>
+		<Key>GeniusIsme.PSBUp</Key>
+		<Category>power</Category>
+		<Tier>0</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.PowerStorageMK1</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>PowerStorageMK1</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+	</CraftData>
+
+	<CraftData>
+		<Key>GeniusIsme.PSBDown</Key>
+		<Category>power</Category>
+		<Tier>0</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>PowerStorageMK1</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>GeniusIsme.PowerStorageMK1</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+	</CraftData>
+
+<!-- PSB Mk2 -->
 	<CraftData>
 		<Key>PSB mk2</Key>
 		<IsOverride>true</IsOverride>
@@ -35,6 +145,41 @@
 		</Costs>
 	</CraftData>
 
+	<CraftData>
+		<Key>GeniusIsme.PSBMk2Up</Key>
+		<Category>power</Category>
+		<Tier>1</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.PowerStorageMK2</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>PowerStorageMK2</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.PowerStorageMK2</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+	<CraftData>
+		<Key>GeniusIsme.PSBMk2Down</Key>
+		<Category>power</Category>
+		<Tier>1</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>PowerStorageMK2</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>GeniusIsme.PowerStorageMK2</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.PowerStorageMK2</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+<!-- PSB Mk3 -->
 	<CraftData>
 		<Key>PSB_mk3_Alt</Key>
 		<IsOverride>true</IsOverride>
@@ -58,11 +203,81 @@
 	</CraftData>
 
 	<CraftData>
+		<Key>GeniusIsme.PSBMk3Up</Key>
+		<Category>power</Category>
+		<Tier>2</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.PowerStorageMK3</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>PowerStorageMK3</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.PowerStorageMK3</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+	<CraftData>
+		<Key>GeniusIsme.PSBMk3Down</Key>
+		<Category>power</Category>
+		<Tier>2</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>PowerStorageMK3</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>GeniusIsme.PowerStorageMK3</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.PowerStorageMK3</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+<!-- PSB Organic -->
+	<CraftData>
 		<Key>PSB organic</Key>
 		<IsOverride>true</IsOverride>
 		<CraftedKey>GeniusIsme.OrganicPowerStorage</CraftedKey>
 	</CraftData>
 
+	<CraftData>
+		<Key>GeniusIsme.PSBOrganicUp</Key>
+		<Category>power</Category>
+		<Tier>3</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.OrganicPowerStorage</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>OrganicPowerStorage</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.OrganicPowerStorage</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+	<CraftData>
+		<Key>GeniusIsme.PSBOrganicDown</Key>
+		<Category>power</Category>
+		<Tier>3</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>OrganicPowerStorage</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>GeniusIsme.OrganicPowerStorage</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.OrganicPowerStorage</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+<!-- PSB Mk4 -->
 	<CraftData>
 		<Key>PSB mk4</Key>
 		<IsOverride>true</IsOverride>
@@ -80,6 +295,41 @@
 	</CraftData>
 
 	<CraftData>
+		<Key>GeniusIsme.PSBMk4Up</Key>
+		<Category>power</Category>
+		<Tier>4</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.BatteryMK4Placement</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>BatteryMK4Placement</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.BatteryMK4Placement</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+	<CraftData>
+		<Key>GeniusIsme.PSBMk4Down</Key>
+		<Category>power</Category>
+		<Tier>4</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>BatteryMK4Placement</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>GeniusIsme.BatteryMK4Placement</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.BatteryMK4Placement</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+<!-- PSB Mk5 -->
+	<CraftData>
 		<Key>PSB mk5</Key>
 		<IsOverride>true</IsOverride>
 		<CraftedKey>GeniusIsme.BatteryMK5Placement</CraftedKey>
@@ -96,6 +346,41 @@
 	</CraftData>
 
 	<CraftData>
+		<Key>GeniusIsme.PSBMk5Up</Key>
+		<Category>power</Category>
+		<Tier>5</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.BatteryMK5Placement</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>BatteryMK5Placement</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.BatteryMK5Placement</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+	<CraftData>
+		<Key>GeniusIsme.PSBMk5Down</Key>
+		<Category>power</Category>
+		<Tier>5</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>BatteryMK5Placement</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>GeniusIsme.BatteryMK5Placement</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.BatteryMK5Placement</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+<!-- Conduit -->
+	<CraftData>
 		<Key>T4_Conduit</Key>
 		<IsOverride>true</IsOverride>
 		<CraftedKey>GeniusIsme.ConduitPlacement</CraftedKey>
@@ -103,13 +388,48 @@
 	</CraftData>
 
 	<CraftData>
+		<Key>GeniusIsme.PSBConduitUp</Key>
+		<Category>powertransmission</Category>
+		<Tier>4</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.ConduitPlacement</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>ConduitPlacement</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.ConduitPlacement</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+	<CraftData>
+		<Key>GeniusIsme.PSBConduitDown</Key>
+		<Category>powertransmission</Category>
+		<Tier>4</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>ConduitPlacement</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>GeniusIsme.ConduitPlacement</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.ConduitPlacement</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+<!-- Induction Charger -->
+	<CraftData>
 		<Key>InductionCharger</Key>
 		<IsOverride>true</IsOverride>
 		<CraftedKey>GeniusIsme.InductionChargerPlacement</CraftedKey>
 		<Costs>
 			<CraftCost>
-				<Key>PowerBoosterMK2</Key>
-				<Amount>5</Amount>
+				<Key>PowerStorageMK2</Key>
+				<Delete>true</Delete>
 			</CraftCost>
 			<CraftCost>
 				<Key>GeniusIsme.PowerStorageMK2</Key>
@@ -121,6 +441,40 @@
 		</RemoveScanRequirements>
 		<ScanRequirements>
 			<Scan>GeniusIsme.PowerStorageMK2</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+	<CraftData>
+		<Key>GeniusIsme.PSBInductionChargerUp</Key>
+		<Category>power</Category>
+		<Tier>2</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>GeniusIsme.InductionChargerPlacement</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>InductionChargerPlacement</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.InductionChargerPlacement</Scan>
+		</ScanRequirements>
+	</CraftData>
+
+	<CraftData>
+		<Key>GeniusIsme.PSBInductionChargerDown</Key>
+		<Category>power</Category>
+		<Tier>2</Tier>
+		<Costs>
+			<CraftCost>
+				<Key>InductionChargerPlacement</Key>
+				<Amount>1</Amount>
+			</CraftCost>
+		</Costs>
+		<CraftedKey>GeniusIsme.InductionChargerPlacement</CraftedKey>
+		<CanCraftAnywhere>true</CanCraftAnywhere>
+		<ScanRequirements>
+			<Scan>GeniusIsme.InductionChargerPlacement</Scan>
 		</ScanRequirements>
 	</CraftData>
 
