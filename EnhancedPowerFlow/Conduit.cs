@@ -1,6 +1,7 @@
-using UnityEngine;
+using System;
 using System.Linq;
 using System.Reflection;
+using UnityEngine;
 using FortressCraft.ModFoundation;
 using FortressCraft.ModFoundation.Block;
 using FortressCraft.ModFoundation.Multiblock;
@@ -169,8 +170,8 @@ public class Conduit : OverloadedMachine<T4_Conduit>, IControl<Conduit>, PowerCo
             case ConduitState.LookForOpposite: return "Looking for opposite conduit to connect to";
         }
         var transfer = this.PowerTransfer.Value >= 0?
-            "sending " + (int) this.PowerTransfer.Value:
-            "receiving " + (int) (-this.PowerTransfer.Value);
+            "sending " + Math.Round(this.PowerTransfer.Value, 0):
+            "receiving " + Math.Round(-this.PowerTransfer.Value, 0);
         return "Conduit\n" + transfer + " pps";
     }
 

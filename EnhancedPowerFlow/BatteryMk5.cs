@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using FortressCraft.ModFoundation;
 using FortressCraft.ModFoundation.Block;
@@ -28,16 +29,16 @@ public class BatteryMk5 : PowerStorageControlBlock<global::T5_Battery, BatteryMk
     public override void Update(float power, float recieved, float delivered, float timeDelta)
     {
         this.Vanilla.mrCurrentPower = power;
-        this.In.AddMeasurement(recieved, timeDelta);
-        this.Out.AddMeasurement(delivered, timeDelta);
+        this.In.AddMeasurement(recieved / timeDelta, timeDelta);
+        this.Out.AddMeasurement(delivered / timeDelta, timeDelta);
     }
 
     public override string GetPopupText()
     {
         return "MK5 Power Storage\n" +
-               "Power : " + (int) this.Vanilla.mrCurrentPower + "/" + (int) this.Storage.Capacity + "\n" +
-               "Power In :" + (int) this.In.Value + "\n" +
-               "Power Out : " + (int) this.Out.Value + "\n";
+               "Power : " + Math.Round(this.Vanilla.mrCurrentPower, 0) + "/" + (int) this.Storage.Capacity + "\n" +
+               "Power In :" + Math.Round(this.In.Value) + "\n" +
+               "Power Out : " + Math.Round(this.Out.Value) + "\n";
     }
 }
 }

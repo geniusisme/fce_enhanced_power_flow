@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using FortressCraft.ModFoundation;
 using FortressCraft.ModFoundation.Block;
@@ -41,40 +42,33 @@ public class PowerStorageBlock : PowerStorageMachine<global::PowerStorageBlock>
 
         var hadPower = this.Vanilla.mrCurrentPower;
 
-        if (extract && ! store)
+        if (extract && !store)
         {
             PowerStorageBlockWindow.HoldExtract(this.Vanilla);
-        }
-        else
-        {
-            PowerStorageBlockWindow.SendExtractRemainder();
+            this.RequestImmediateNetworkUpdate();
         }
 
-        if (store && ! extract)
+        if (store && !extract)
         {
             PowerStorageBlockWindow.HoldInteract(this.Vanilla);
-        }
-        else
-        {
-            PowerStorageBlockWindow.SendInteractRemainder();
+            this.RequestImmediateNetworkUpdate();
         }
 
         var delta = this.Vanilla.mrCurrentPower - hadPower;
         this.Storage.Power += delta;
 
         return "Power Storage\n" +
-               "Power : " + (int) this.Storage.Power + "/" + this.Storage.Capacity + "\n" +
-               "Power delta : " + (int) this.PowerDelta.Value + "pps\n" +
+               "Power : " + Math.Round(this.Storage.Power, 0) + "/" + this.Storage.Capacity + "\n" +
+               "Power delta : " + Math.Round(this.PowerDelta.Value, 1) + " pps\n" +
                "Press 'E' to to add power" + "\n" +
                "Press 'Q' to remove power";
-
     }
 
     static PowerStorage MakeStorage(int variety)
     {
         switch (variety)
         {
-            case 0: return new PowerStorage(200, 50, 50);
+            case 0: return new PowerStorage(200, 75, 75);
             case 1: return new PowerStorage(1500, 400, 400);
             case 2: return new PowerStorage(5000, 2000, 2000);
             case 3: return new PowerStorage(8500, 100, 100);

@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using FortressCraft.ModFoundation;
 using FortressCraft.ModFoundation.Block;
@@ -30,16 +31,16 @@ public class InductionCharger : PowerStorageControlBlock<global::InductionCharge
     public override void Update(float power, float recieved, float delivered, float timeDelta)
     {
         this.TotalDelivered += delivered;
-        this.Delivering.AddMeasurement(delivered, timeDelta);
+        this.Delivering.AddMeasurement(delivered / timeDelta, timeDelta);
         this.Vanilla.mrCurrentPower = power;
     }
 
     public override string GetPopupText()
     {
         return "Induction Charger\n" +
-               "Power : " + (int) this.Vanilla.mrCurrentPower + "\n" +
-               "Delivering : " + (int) this.Delivering.Value + " pps\n" + "\n" +
-               "Total power delivered : " + (int) this.TotalDelivered;
+               "Power : " + Math.Round(this.Vanilla.mrCurrentPower, 0) + "\n" +
+               "Delivering : " + Math.Round(this.Delivering.Value, 1) + " pps\n" + "\n" +
+               "Total power delivered : " + Math.Round(this.TotalDelivered, 0);
     }
 }
 }
