@@ -233,7 +233,7 @@ public class Conduit : OverloadedMachine<T4_Conduit>, IControl<Conduit>, PowerCo
 
     public bool WantsPowerFromEntity(SegmentEntity entity)
     {
-        return this.Opposite?.ConsumerDelegate?.WantsPowerFromEntity(entity) ?? false;
+        return entity == this.ConsumerDelegate;
     }
 
     public override void OnDelete()

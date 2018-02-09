@@ -1,4 +1,5 @@
 using System.IO;
+using System.Linq;
 using FortressCraft.ModFoundation;
 using FortressCraft.ModFoundation.Block;
 
@@ -31,7 +32,8 @@ public class PowerStorageMachine<G> : OverloadedMachine<G>, PowerConsumerInterfa
     {
         this.Surveyor.Update();
         var recieved = this.Storage.Recieved;
-        this.Storage.Update(timeDelta, Surveyor.Surveyed<PowerConsumerInterface>());
+        this.Storage.Update(timeDelta,
+            Surveyor.Surveyed<PowerConsumerInterface>().Where(c => c.WantsPowerFromEntity(this)));
         this.UpdateImportantCPH();
         this.Update(this.Storage.Power, recieved, this.Storage.Delivered, timeDelta);
     }
