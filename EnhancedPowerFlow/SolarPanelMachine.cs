@@ -30,6 +30,10 @@ public class SolarPanelMachine<G> : OverloadedMachine<G>
           difficultyFactor = 3.5f;
         this.DayRate = dayRate * difficultyFactor;
         this.NightRate = nightRate * difficultyFactor;
+        var down = Direction.Up().Negate();
+        var probes = this.Box.Side(down)
+            .Select((pos) => new PciSurveyor.Probe(pos, down));
+        this.PciSurveyor = new PciSurveyor(probes, this);
     }
 
     public override void Update(float timeDelta)
@@ -73,17 +77,7 @@ public class SolarPanelMachine<G> : OverloadedMachine<G>
 
     void DistributePower(float power, float timeDelta)
     {
-        var consumers = this.Box.Side(Direction.Up().Negate())
-            .Select(b => this.Surveyor.Look().At(b).For<PowerConsumerInterface>())
-            .Where(c => c != null).ToList();
-        if (consumers.Count == 0)
-        {
-            return;
-        }
-        this.StartConsumerIndex = (this.StartConsumerIndex + 1) % consumers.Count();
-        var fairConsumers = consumers.Skip(StartConsumerIndex).Concat(consumers.Take(StartConsumerIndex));
-
-        foreach(var consumer in fairConsumers)
+        foreach(var consumer in this.PciSurveyor.Survey())
         {
             var amount = new [] {
                 power,
@@ -103,9 +97,9 @@ public class SolarPanelMachine<G> : OverloadedMachine<G>
     }
 
     BlockSurveyor Surveyor;
+    PciSurveyor PciSurveyor;
     List<Clearance> Clearances;
     GridBox Box;
-    int StartConsumerIndex = 0;
     float DayRate = 1f;
     float NightRate = 0.1f;
     float Generation = 0f;

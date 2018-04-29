@@ -106,7 +106,7 @@ public class PowerStorageTest
         this.CreateStorages(1500, 200, 1500);
         this.DeliverPower(1500, 200 - ToPerTickRate(PPS), 1500);
 
-        for (int i = 0; i < 1000; ++i)
+        for (int i = 0; i < 10000; ++i)
         {
             this.Update();
             AssertClose(3200 - ToPerTickRate(PPS), Power(0) + Power(1) + Power(2), 2);

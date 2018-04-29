@@ -2,6 +2,7 @@ using System.IO;
 using System.Linq;
 using FortressCraft.ModFoundation;
 using FortressCraft.ModFoundation.Block;
+using FortressCraft.ModFoundation.Multiblock;
 
 namespace GeniusIsme
 {
@@ -10,7 +11,7 @@ public class PowerStorageMachine<G> : OverloadedMachine<G>, PowerConsumerInterfa
     where G : MachineEntity
 {
     protected PowerStorage Storage;
-    AdjacentsSurveyor Surveyor;
+    PciSurveyor Surveyor;
 
     /// override this method to provide underlying graphics with info it needs to update
     /// also useful for updating status text
@@ -24,16 +25,17 @@ public class PowerStorageMachine<G> : OverloadedMachine<G>, PowerConsumerInterfa
         this.Storage = storage;
         var center = new Position(parameters);
         var shift = size / 2;
-        var box = new Box(center - shift, center + shift);
-        this.Surveyor = new AdjacentsSurveyor(box, this);
+        var box = new GridBox(new Box(center - shift, center + shift));
+        var probes = Direction.All().SelectMany(
+            (d) => box.Side(d).Select((p) => new PciSurveyor.Probe(p, d))
+        );
+        this.Surveyor = new PciSurveyor(probes, this);
     }
 
     public override void Update(float timeDelta)
     {
-        this.Surveyor.Update();
         var recieved = this.Storage.Recieved;
-        this.Storage.Update(timeDelta,
-            Surveyor.Surveyed<PowerConsumerInterface>().Where(c => c.WantsPowerFromEntity(this)));
+        this.Storage.Update(timeDelta, Surveyor.Survey());
         this.UpdateImportantCPH();
         this.Update(this.Storage.Power, recieved, this.Storage.Delivered, timeDelta);
     }

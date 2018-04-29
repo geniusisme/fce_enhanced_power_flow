@@ -53,6 +53,7 @@
     <Compile Include="DummyPowerConsumer.cs" />
     <Compile Include="InductionCharger.cs" />
     <Compile Include="OrganicSolarMk2.cs" />
+    <Compile Include="PCISurveyor.cs" />
     <Compile Include="PowerStorageBlock.cs" />
     <Compile Include="PowerStorage.cs" />
     <Compile Include="PowerStorageControlBlock.cs" />
@@ -68,7 +69,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>robocopy $(TargetDir) $(LOCALAPPDATA)\ProjectorGames\FortressCraft\Mods\$(ProjectName)\13\ $(TargetFileName)</PostBuildEvent>
+    <PostBuildEvent>robocopy $(ProjectDir)/../Xml $(LOCALAPPDATA)\ProjectorGames\FortressCraft\Mods\$(ProjectName)\14\Xml
+echo ../$(ProjectDir)/Xml
+robocopy $(TargetDir) $(LOCALAPPDATA)\ProjectorGames\FortressCraft\Mods\$(ProjectName)\14\ $(TargetFileName)
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

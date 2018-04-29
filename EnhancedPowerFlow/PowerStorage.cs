@@ -19,8 +19,6 @@ public class PowerStorage : PowerConsumerInterface
     public readonly float OutputRate;
     public readonly float InputRate;
 
-    int StartConsumerIndex;
-
     public PowerStorage(float capacity, float outputRate, float inputRate)
     {
         this.Capacity = capacity;
@@ -33,14 +31,8 @@ public class PowerStorage : PowerConsumerInterface
         this.Delivered = 0;
         this.Recieved = 0;
         var ticks = ToTicks(delta);
-        var memoized = consumers.ToArray();
-        if (memoized.Count() == 0)
-        {
-            return;
-        }
-        this.StartConsumerIndex = (this.StartConsumerIndex + 1) % memoized.Count();
-        var fairConsumers = memoized.Skip(StartConsumerIndex).Concat(memoized.Take(StartConsumerIndex));
-        foreach (var consumer in fairConsumers)
+
+        foreach (var consumer in consumers)
         {
             this.FeedConsumer(consumer, ticks);
         }
