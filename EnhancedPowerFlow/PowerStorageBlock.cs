@@ -7,8 +7,6 @@ namespace GeniusIsme
 {
 public class PowerStorageBlock : PowerStorageMachine<global::PowerStorageBlock>
 {
-    WindowAverage PowerDelta = new WindowAverage(1.0f);
-
     public PowerStorageBlock(ModCreateSegmentEntityParameters parameters):
         base(
             parameters,
@@ -29,10 +27,9 @@ public class PowerStorageBlock : PowerStorageMachine<global::PowerStorageBlock>
 
     public override void Update(float power, float recieved, float delivered, float timeDelta)
     {
-        this.PowerDelta.AddMeasurement((recieved - delivered) / timeDelta, timeDelta);
-        this.Vanilla.mrNormalisedPower = power / this.GetMaxPower();
-        this.Vanilla.mrCurrentPower = power;
-        this.Vanilla.mrPowerSpareCapacity = this.Storage.Capacity - power;
+        Vanilla.mrNormalisedPower = power / GetMaxPower();
+        Vanilla.mrCurrentPower = power;
+        Vanilla.mrPowerSpareCapacity = Storage.Capacity - power;
     }
 
     public override string GetPopupText()
@@ -40,26 +37,26 @@ public class PowerStorageBlock : PowerStorageMachine<global::PowerStorageBlock>
         bool extract = Input.GetButton("Extract");
         bool store = Input.GetButton("Interact");
 
-        var hadPower = this.Vanilla.mrCurrentPower;
+        var hadPower = Vanilla.mrCurrentPower;
 
         if (extract && !store)
         {
-            PowerStorageBlockWindow.HoldExtract(this.Vanilla);
-            this.RequestImmediateNetworkUpdate();
+            PowerStorageBlockWindow.HoldExtract(Vanilla);
+            RequestImmediateNetworkUpdate();
         }
 
         if (store && !extract)
         {
-            PowerStorageBlockWindow.HoldInteract(this.Vanilla);
-            this.RequestImmediateNetworkUpdate();
+            PowerStorageBlockWindow.HoldInteract(Vanilla);
+            RequestImmediateNetworkUpdate();
         }
 
-        var delta = this.Vanilla.mrCurrentPower - hadPower;
-        this.Storage.Power += delta;
+        var delta = Vanilla.mrCurrentPower - hadPower;
+        Storage.Power += delta;
 
         return "Power Storage\n" +
-               "Power : " + Math.Round(this.Storage.Power, 0) + "/" + this.Storage.Capacity + "\n" +
-               "Power delta : " + Math.Round(this.PowerDelta.Value, 1) + " pps\n" +
+               "Power : " + Math.Round(Storage.Power, 0) + "/" + Storage.Capacity + "\n" +
+               "Power delta : " + Math.Round(PowerDeltaPPS, 1) + " pps\n" +
                "Press 'E' to to add power" + "\n" +
                "Press 'Q' to remove power";
     }

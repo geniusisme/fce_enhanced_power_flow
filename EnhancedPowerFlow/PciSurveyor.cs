@@ -34,7 +34,8 @@ public class PciSurveyor
         this.Update();
         var memoized = this.Pcis
             .Where((x) => IsGood(x))
-            .Where((x) => x.WantsPowerFromEntity(this.PowerSource));
+            .Where((x) => x.WantsPowerFromEntity(this.PowerSource))
+            .ToList();
         if (memoized.Count() == 0)
         {
             return memoized;

@@ -3,43 +3,62 @@ using FortressCraft.ModFoundation.Multiblock;
 
 namespace GeniusIsme
 {
-public class PowerStorageFiller<Machine> : Filler<Machine>, PowerConsumerInterface
+public class PowerStorageFiller<Machine> : Filler<Machine>, PowerConsumerInterface, PowerStorageInterface
     where Machine : MachineEntity, IControl<Machine>
 {
     public PowerStorageFiller(ModCreateSegmentEntityParameters parameters)
     : base(parameters)
     {}
 
-    float PowerConsumerInterface.GetMaxPower()
+    public float PowerDeltaPPS { get { return Storage?.PowerDeltaPPS ?? 0; } }
+
+    public float PowerDelta { get { return Storage?.PowerDelta ?? 0; } }
+
+    public float PreviousPower { get { return Storage?.PreviousPower ?? 0; } }
+
+    public int AttachedPowerConsumers { get { return Storage?.AttachedPowerConsumers?? 0; } }
+
+    public float CurrentPower { get { return Storage?.CurrentPower ?? 0; }
+                         set { if (Storage != null) Storage.CurrentPower = value; } }
+
+    public float GetMaxPower()
     {
-        return this.Consumer?.GetMaxPower() ?? 0;
+        return Consumer?.GetMaxPower() ?? 0;
     }
 
-    float PowerConsumerInterface.GetRemainingPowerCapacity()
+    public float GetRemainingPowerCapacity()
     {
-        return this.Consumer?.GetRemainingPowerCapacity() ?? 0;
+        return Consumer?.GetRemainingPowerCapacity() ?? 0;
     }
 
-    float PowerConsumerInterface.GetMaximumDeliveryRate()
+    public float GetMaximumDeliveryRate()
     {
-        return this.Consumer?.GetMaximumDeliveryRate() ?? 0;
+        return Consumer?.GetMaximumDeliveryRate() ?? 0;
     }
 
-    bool PowerConsumerInterface.DeliverPower(float amount)
+    public bool DeliverPower(float amount)
     {
-        return this.Consumer?.DeliverPower(amount) ?? false;
+        return Consumer?.DeliverPower(amount) ?? false;
     }
 
-    bool PowerConsumerInterface.WantsPowerFromEntity(SegmentEntity entity)
+    public bool WantsPowerFromEntity(SegmentEntity entity)
     {
-        return this.Consumer?.WantsPowerFromEntity(entity) ?? false;
+        return Consumer?.WantsPowerFromEntity(entity) ?? false;
     }
 
     PowerConsumerInterface Consumer
     {
         get
         {
-            return this.Control as PowerConsumerInterface;
+            return Control as PowerConsumerInterface;
+        }
+    }
+
+    PowerStorageInterface Storage
+    {
+        get
+        {
+            return Control as PowerStorageInterface;
         }
     }
 }

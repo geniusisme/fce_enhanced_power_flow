@@ -7,9 +7,6 @@ namespace GeniusIsme
 {
 public class BatteryMk4 : PowerStorageControlBlock<global::T4_Battery, BatteryMk4>
 {
-    WindowAverage In = new WindowAverage(1.0f);
-    WindowAverage Out = new WindowAverage(1.0f);
-
     public BatteryMk4(ModCreateSegmentEntityParameters parameters):
         base(parameters, new PowerStorage(270000, 2000, 2000), new Position(3, 3, 3), EnhancedPowerFlow.BatteryMk4,
             new global::T4_Battery(
@@ -29,8 +26,6 @@ public class BatteryMk4 : PowerStorageControlBlock<global::T4_Battery, BatteryMk
     public override void Update(float power, float recieved, float delivered, float timeDelta)
     {
         this.Vanilla.mrCurrentPower = power;
-        this.In.AddMeasurement(recieved / timeDelta, timeDelta);
-        this.Out.AddMeasurement(delivered / timeDelta, timeDelta);
     }
 
     public override string GetPopupText()

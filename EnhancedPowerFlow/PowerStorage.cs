@@ -9,11 +9,27 @@ namespace GeniusIsme
 {
 public class PowerStorage : PowerConsumerInterface
 {
-    /// Storage recive power from other entities while their update and zeroes it while self update
-    public float Recieved { get; private set; }
-    /// Storage deliver power to other entities while self update
-    public float Delivered { get; private set; }
-    public float Power { get; set; }
+    float Recieved;
+    float Delivered;
+    float PowerField;
+    public float Power
+    {
+        get { return PowerField; }
+        set
+        {
+            var delta = value - PowerField;
+            if (delta > 0)
+            {
+                Recieved += delta;
+            }
+            else
+            {
+                Delivered -= delta;
+            }
+
+            PowerField = value;
+        }
+    }
 
     public readonly float Capacity;
     public readonly float OutputRate;
@@ -21,47 +37,51 @@ public class PowerStorage : PowerConsumerInterface
 
     public PowerStorage(float capacity, float outputRate, float inputRate)
     {
-        this.Capacity = capacity;
-        this.OutputRate = ToPerTickRate(outputRate);
-        this.InputRate = ToPerTickRate(inputRate);
+        Capacity = capacity;
+        OutputRate = ToPerTickRate(outputRate);
+        InputRate = ToPerTickRate(inputRate);
     }
 
-    public void Update(float delta, IEnumerable<PowerConsumerInterface> consumers)
+    public Transmission Update(float delta, IEnumerable<PowerConsumerInterface> consumers)
     {
-        this.Delivered = 0;
-        this.Recieved = 0;
         var ticks = ToTicks(delta);
 
         foreach (var consumer in consumers)
         {
-            this.FeedConsumer(consumer, ticks);
+            FeedConsumer(consumer, ticks);
         }
+
+        var result = new Transmission(Recieved, Delivered);
+
+        Delivered = 0;
+        Recieved = 0;
+
+        return result;
     }
 
     void FeedConsumer(PowerConsumerInterface consumer, float ticks)
     {
         var equalisedPower = EqualisedPower(consumer);
-        if (this.Power > equalisedPower)
+        if (Power > equalisedPower)
         {
             var transferAmount = new [] {
-                this.OutputRate * ticks,
-                this.Power - equalisedPower,
+                OutputRate * ticks,
+                Power - equalisedPower,
                 consumer.GetRemainingPowerCapacity(),
                 consumer.GetMaximumDeliveryRate() * ticks,
             }.Min();
             if (consumer.DeliverPower(transferAmount))
             {
-                this.Power -= transferAmount;
-                this.Delivered += transferAmount;
+                Power -= transferAmount;
             }
         }
     }
 
     float EqualisedPower(PowerConsumerInterface them)
     {
-        var sumCapacity = this.Capacity + them.GetMaxPower();
-        var sumPower = this.Power + them.GetMaxPower() - them.GetRemainingPowerCapacity();
-        return this.Capacity * sumPower / sumCapacity;
+        var sumCapacity = Capacity + them.GetMaxPower();
+        var sumPower = Power + them.GetMaxPower() - them.GetRemainingPowerCapacity();
+        return Capacity * sumPower / sumCapacity;
     }
 
     static float NormalizedPower(PowerConsumerInterface powerHolder)
@@ -71,27 +91,26 @@ public class PowerStorage : PowerConsumerInterface
 
     public float GetMaxPower()
     {
-        return this.Capacity;
+        return Capacity;
     }
 
     public float GetRemainingPowerCapacity()
     {
-        return this.Capacity - this.Power;
+        return Capacity - Power;
     }
 
     public float GetMaximumDeliveryRate()
     {
-        return this.InputRate;
+        return InputRate;
     }
 
     public bool DeliverPower(float amount)
     {
-        if (amount > this.GetRemainingPowerCapacity())
+        if (amount > GetRemainingPowerCapacity())
         {
             return false;
         }
-        this.Power += amount;
-        this.Recieved += amount;
+        Power += amount;
         return true;
     }
 
@@ -102,16 +121,28 @@ public class PowerStorage : PowerConsumerInterface
 
     public void Read(BinaryReader reader)
     {
-        if (this.Capacity < 1 << 8) this.Power = reader.ReadByte();
-        else if (this.Capacity < 1 << 16) this.Power = reader.ReadUInt16();
-        else this.Power = reader.ReadUInt32();
+        if (Capacity < 1 << 8) Power = reader.ReadByte();
+        else if (Capacity < 1 << 16) Power = reader.ReadUInt16();
+        else Power = reader.ReadUInt32();
     }
 
     public void Write(BinaryWriter writer)
     {
-        if (this.Capacity < 1 << 8) writer.Write((Byte)this.Power);
-        else if (this.Capacity < 1 << 16) writer.Write((UInt16)this.Power);
-        else writer.Write((UInt32)this.Power);
+        if (Capacity < 1 << 8) writer.Write((Byte)Power);
+        else if (Capacity < 1 << 16) writer.Write((UInt16)Power);
+        else writer.Write((UInt32)Power);
+    }
+}
+
+public struct Transmission
+{
+    public readonly float Recieved;
+    public readonly float Delivered;
+
+    public Transmission(float recived, float delivered)
+    {
+        Recieved = recived;
+        Delivered = delivered;
     }
 }
 }
