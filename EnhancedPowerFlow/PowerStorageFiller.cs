@@ -19,7 +19,7 @@ public class PowerStorageFiller<Machine> : Filler<Machine>, PowerConsumerInterfa
     public int AttachedPowerConsumers { get { return Storage?.AttachedPowerConsumers?? 0; } }
 
     public float CurrentPower { get { return Storage?.CurrentPower ?? 0; }
-                         set { if (Storage != null) Storage.CurrentPower = value; } }
+                                set { if (Storage != null) Storage.CurrentPower = value; } }
 
     public float GetMaxPower()
     {

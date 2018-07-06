@@ -61,12 +61,16 @@ public class PowerStorage : PowerConsumerInterface
 
     void FeedConsumer(PowerConsumerInterface consumer, float ticks)
     {
-        var equalisedPower = EqualisedPower(consumer);
-        if (Power > equalisedPower)
+        var powerToHoldOn = 0f;
+        if (consumer as PowerStorageInterface != null)
+        {
+            powerToHoldOn = EqualisedPower(consumer);
+        }
+        if (Power > powerToHoldOn)
         {
             var transferAmount = new [] {
                 OutputRate * ticks,
-                Power - equalisedPower,
+                Power - powerToHoldOn,
                 consumer.GetRemainingPowerCapacity(),
                 consumer.GetMaximumDeliveryRate() * ticks,
             }.Min();

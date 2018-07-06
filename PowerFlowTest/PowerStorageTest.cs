@@ -1,11 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GeniusIsme;
-using FortressCraft.ModFoundation;
-using FortressCraft.ModFoundation.Block;
-using FortressCraft.ModFoundation.Multiblock;
 
 using static FortressCraft.ModFoundation.Util;
 
@@ -16,51 +14,32 @@ public class PowerStorageTest
 {
     const float PPS = 150f;
 
-    List<PowerStorage> storages;
-    List<PowerConsumerInterface> consumers;
+    Storages Storages = new Storages();
 
-    void CreateStorages(params float[] capacities)
+    void Update(int sIdx)
     {
-        storages = new List<PowerStorage>();
-        consumers = new List<PowerConsumerInterface>();
-
-        foreach( var capacity in capacities)
-        {
-            var storage = new PowerStorage(capacity, PPS, PPS);
-            this.storages.Add(storage);
-            this.consumers.Add(storage);
-        }
-    }
-
-    void Update(int index)
-    {
+        var storage = Storages.PowerStorages[sIdx] as TestStorage;
+        if (storage == null) return;
         var neighbours = new List<PowerConsumerInterface>();
-        if (index > 0) neighbours.Add(this.consumers[index - 1]);
-        if (index < this.storages.Count() - 1) neighbours.Add(this.consumers[index + 1]);
-        this.storages[index].Update(0.2f, neighbours);
+        var connections = Storages.Connections[sIdx];
+        foreach (int nIdx in connections)
+        {
+            neighbours.Add(Storages.PowerStorages[nIdx]);
+        }
+        Storages.PowerStorages[sIdx].Update(0.2f, neighbours);
     }
 
     void Update()
     {
-        for (int i = 0; i < this.storages.Count(); ++i)
+        for (int sIdx = 0; sIdx < Storages.PowerStorages.Count(); ++sIdx)
         {
-            this.Update(i);
+            Update(sIdx);
         }
     }
 
     float Power(int index)
     {
-        return this.consumers[index].GetMaxPower() - this.consumers[index].GetRemainingPowerCapacity();
-    }
-
-    void DeliverPower(params float[] powers)
-    {
-        Assert.AreEqual(powers.Count(), this.storages.Count());
-        for (int index = 0; index < powers.Count(); ++index)
-        {
-            this.consumers[index].DeliverPower(powers[index]);
-            this.storages[index].Update(0, this.consumers);
-        }
+        return Storages.PowerStorages[index].GetMaxPower() - Storages.PowerStorages[index].GetRemainingPowerCapacity();
     }
 
     void AssertClose(float ideal, float real, int ticks = 1)
@@ -75,40 +54,50 @@ public class PowerStorageTest
     [TestMethod]
     public void TakePowerButWontGiveBack()
     {
-        this.CreateStorages(200, 200);
-        this.DeliverPower(100, 0);
+        Storages = new Storages
+        {
+            {newStorage(200, 100), 1},
+            {newStorage(200)}
+        };
 
-        this.Update(0);
-        var power0 = this.Power(0);
-        this.Update(1);
+        Update(0);
+        var power0 = Power(0);
+        Update(1);
 
-        Assert.IsTrue(this.Power(0) < 100); //transferred
-        Assert.AreEqual(power0, this.Power(0)); // didn't receive anything back
-        Assert.IsTrue(this.Power(1) > 0); //received something
+        Assert.IsTrue(Power(0) < 100); //transferred
+        Assert.AreEqual(power0, Power(0)); // didn't receive anything back
+        Assert.IsTrue(Power(1) > 0); //received something
     }
 
     [TestMethod]
     public void TransferToBiggerBatteriesPossible()
     {
-        this.CreateStorages(200, 5000);
-        this.DeliverPower(100, 100);
+        Storages = new Storages
+        {
+            {newStorage(200, 100), 1},
+            {newStorage(5000, 100)}
+        };
 
-        this.Update(0);
-        this.Update(1);
+        Update(0);
+        Update(1);
 
-        Assert.IsTrue(this.Power(0) < 100); //transferred
-        Assert.IsTrue(this.Power(1) > 100); //received something
+        Assert.IsTrue(Power(0) < 100); //transferred
+        Assert.IsTrue(Power(1) > 100); //received something
     }
 
     [TestMethod]
     public void PowerGetsTransferredEventually()
     {
-        this.CreateStorages(1500, 200, 1500);
-        this.DeliverPower(1500, 200 - ToPerTickRate(PPS), 1500);
+        Storages = new Storages
+        {
+            {newStorage(1500, 1500)},
+            {newStorage(200, 200 - ToPerTickRate(PPS)), 0, 2},
+            {newStorage(1500, 1500)}
+        };
 
         for (int i = 0; i < 10000; ++i)
         {
-            this.Update();
+            Update();
             AssertClose(3200 - ToPerTickRate(PPS), Power(0) + Power(1) + Power(2), 2);
         }
     }
@@ -116,10 +105,14 @@ public class PowerStorageTest
     [TestMethod]
     public void PowerGetsEvenEventually()
     {
-        this.CreateStorages(1500, 200, 5000);
-        this.DeliverPower(0, 100, 1300);
+        Storages = new Storages
+        {
+            {newStorage(1500, 0)},
+            {newStorage(200, 100), 0, 2},
+            {newStorage(5000, 1300)}
+        };
 
-        for (int i = 0; i < 100; ++i) this.Update();
+        for (int i = 0; i < 100; ++i) Update();
 
         AssertClose(300, Power(0), 2);
         AssertClose(1000, Power(2), 2);
@@ -128,17 +121,108 @@ public class PowerStorageTest
     [TestMethod]
     public void FeedingOneFillsOther()
     {
-        this.CreateStorages(5000, 5000);
+        Storages = new Storages
+        {
+            {newStorage(5000), 1},
+            {newStorage(5000)}
+        };
+
         float delivered = 0f;
         for (int i = 0; i < 260; ++i)
         {
-            var toDeliver = new[]{ 100, this.consumers[0].GetRemainingPowerCapacity() }.Min();
-            this.consumers[0].DeliverPower(toDeliver);
+            var storage = Storages.PowerStorages[0];
+            var toDeliver = new[]{ 100, storage.GetRemainingPowerCapacity() }.Min();
+            storage.DeliverPower(toDeliver);
             delivered += toDeliver;
-            this.Update();
+            Update();
         }
         Assert.AreEqual(10000, Power(0) + Power(1));
         AssertClose(Power(0) + Power(1), delivered);
+    }
+
+    [TestMethod]
+    public void DeliverAllThePowerToRegularConsumer()
+    {
+        Storages = new Storages
+        {
+            {newStorage(100, 100), 1},
+            {newConsumer(100)}
+        };       
+
+        for (int i = 0; i < 100 / ToPerTickRate(PPS); ++i)
+        {
+            Update();
+        }
+        AssertClose(Power(0), 0);
+        AssertClose(Power(1), 100);
+    }
+
+    PowerStorage newStorage(float capacity, float power = 0)
+    {
+        var storage = new TestStorage(capacity, PPS, PPS);
+        storage.DeliverPower(power);
+        return storage;
+    }
+
+    PowerStorage newConsumer(float capacity, float power = 0)
+    {
+        var consumer = new PowerStorage(capacity, PPS, PPS);
+        consumer.DeliverPower(power);
+        return consumer;
+    }
+}
+
+class TestStorage : PowerStorage, PowerStorageInterface
+{
+    public TestStorage(float capacity, float outputRate, float inputRate) :
+        base(capacity, outputRate, inputRate) {}
+
+    public float PowerDeltaPPS { get; set; }
+
+    public float PowerDelta { get; private set; }
+
+    public float PreviousPower { get; private set; }
+
+    public int AttachedPowerConsumers { get; private set; }
+
+    public float CurrentPower { get; set; }
+}
+
+
+class Storages : IEnumerable<int>
+{
+    public List<PowerStorage> PowerStorages = new List<PowerStorage>();
+    public Dictionary<int, List<int>> Connections
+        = new Dictionary<int, List<int>>();
+
+    public IEnumerator<int> GetEnumerator() => null;
+
+    IEnumerator IEnumerable.GetEnumerator() => null;
+
+    public void Add(PowerStorage storage, params int[] connections)
+    {
+        PowerStorages.Add(storage);
+        var idx = PowerStorages.Count() - 1;
+        var from = At(idx);
+        foreach (int connection in connections)
+        {
+            from.Add(connection);
+            At(connection).Add(idx);
+        }
+    }
+
+    List<int> At(int idx)
+    {
+        var result = new List<int>();
+        if (Connections.ContainsKey(idx))
+        {
+            result = Connections[idx];
+        }
+        else
+        {
+            Connections.Add(idx, result);
+        }
+        return result;
     }
 }
 }
